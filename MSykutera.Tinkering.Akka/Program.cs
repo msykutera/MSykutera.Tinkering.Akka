@@ -1,5 +1,5 @@
-﻿
-using Akka.Actor;
+﻿using Akka.Actor;
+using Akka.Util.Internal;
 using MSykutera.Tinkering.Akka;
 
 var options = new
@@ -28,9 +28,6 @@ var tasks = Enumerable
 
 await Task.WhenAll(tasks);
 
-for (var i = 1; i <= options.Numbers; i++)
-{
-    Console.WriteLine($"{i}: {sequence[i]}");
-}
-
-
+Enumerable
+    .Range(1, options.Numbers)
+    .ForEach(i => Console.WriteLine($"{i}: {sequence[i]}"));
